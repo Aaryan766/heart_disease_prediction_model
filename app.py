@@ -47,13 +47,12 @@ model = load_model("heart_disease_pred.pkl")
 url = "https://github.com/ankitmisk/Heart_Disease_Prediction_ML_Model/blob/main/heart.csv?raw=true"
 df = load_data(url)
 
-# ---------- Sidebar UI ----------
 st.sidebar.header("Select Features to Predict Heart Disease")
 st.sidebar.image(
     "https://humanbiomedia.org/animations/circulatory-system/cardiac-cycle/heart-beating.gif"
 )
 
-# Put all widgets inside a form so the prediction runs only on submit
+
 with st.sidebar.form("predict_form"):
     all_values = []
 
@@ -61,7 +60,7 @@ with st.sidebar.form("predict_form"):
         mn, mx = map(int, df[col].agg(["min", "max"]))
         key = f"feat_{col}"
 
-        # Set a random default ONLY ONCE (no value=... passed to widget)
+
         if key not in st.session_state:
             st.session_state[key] = random.randint(mn, mx)
 
@@ -69,7 +68,7 @@ with st.sidebar.form("predict_form"):
             f"Select {col} value",
             mn,
             mx,
-            key=key,  # widget reads/writes from st.session_state[key]
+            key=key,  
         )
         all_values.append(val)
 
